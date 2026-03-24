@@ -842,3 +842,36 @@ footer {
 .project-tech-list span i {
     font-size: 0.9rem; /* Tamanho do ícone */
 }
+
+/* Posicionamento das bandeiras */
+.translation-icons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    gap: 10px;
+}
+
+.translation-icons img {
+    width: 30px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.translation-icons img:hover {
+    transform: scale(1.2);
+}
+
+/* Esconde o banner de "traduzido" do Google no topo */
+body {
+    top: 0 !important;
+}
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+}
+.goog-te-gadget {
+    color: transparent !important;
+}

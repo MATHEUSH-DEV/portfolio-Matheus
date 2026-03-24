@@ -4,6 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="description" content="Portfólio de Matheus Henrique, Desenvolvedor Front-End">
+    <meta name="keywords" content="HTML, CSS, JavaScript, Front-End, Desenvolvimento Web">
+    <meta name="author" content="Matheus Henrique">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#ffffff">
+
+
     <title>Matheus Henrique | Desenvolvedor Front-End</title>
 
 
@@ -20,7 +28,114 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
+<style>
+    /* Força o posicionamento antes de qualquer coisa */
+    .translation-icons {
+        position: fixed !important;
+        top: 20px !important;
+        right: 20px !important;
+        z-index: 999999 !important;
+        /* Valor absurdamente alto */
+        display: flex;
+        gap: 10px;
+    }
+
+    .translation-icons img {
+        width: 32px;
+        height: auto;
+        cursor: pointer;
+        border-radius: 4px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .goog-te-banner-frame {
+        display: none !important;
+    }
+
+    /* 1. Esconde o frame de tradução (o banner branco) */
+    .goog-te-banner-frame.skiptranslate,
+    .goog-te-banner-frame {
+        display: none !important;
+    }
+
+    html {
+        margin-top: 0 !important;
+    }
+
+    /* 2. Impede que o Google adicione um padding no topo do body */
+    body {
+        top: 0 !important;
+        position: static !important;
+    }
+
+    /* 3. Remove o 'tooltip' chato que aparece quando passa o mouse em textos traduzidos */
+    .goog-te-balloon-frame {
+        display: none !important;
+    }
+
+    /* 4. Remove o destaque (highlight) azul em volta das palavras traduzidas */
+    font {
+        background-color: transparent !important;
+        box-shadow: none !important;
+    }
+
+    #goog-gt-tt,
+    .goog-te-ballon-frame,
+    .goog-te-banner-frame,
+    .goog-te-banner {
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+    .skiptranslate {
+        display: none !important;
+    }
+</style>
+
+
 <body>
+
+    <!-- QUERO QUE ESSE HTML TENHA TRADUÇÃO AUTOMÁTICA PRO INGLES, quero botões de tradução embutido na página -->
+
+    <div id="google_translate_element" style="display:none;"></div>
+
+    <div class="translation-icons">
+        <a href="javascript:void(0)" onclick="translatePage('pt')" title="Português">
+            <img src="https://flagcdn.com/w40/br.png" alt="Brasil">
+        </a>
+        <a href="javascript:void(0)" onclick="translatePage('en')" title="English">
+            <img src="https://flagcdn.com/w40/us.png" alt="USA">
+        </a>
+    </div>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'pt',
+                includedLanguages: 'en,pt',
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+
+        function translatePage(lang) {
+            var selectField = document.querySelector("select.goog-te-combo");
+            if (selectField) {
+                selectField.value = lang;
+                // Dispara o evento de mudança para o Google perceber a troca
+                selectField.dispatchEvent(new Event('change'));
+            }
+
+            // Mantém o banner escondido caso ele tente voltar
+            setTimeout(function () {
+                var banner = document.querySelector(".goog-te-banner-frame");
+                if (banner) banner.style.setProperty('display', 'none', 'important');
+                document.body.style.top = '0px';
+            }, 500);
+        }
+    </script>
+    <script type="text/javascript"
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
     <header>
         <div class="container">
@@ -53,329 +168,335 @@
     </header>
 
 
-        <section id="sobre">
-            <div class="container">
-                <div class="about-content">
-                    <h2>Olá, Eu Sou Matheus Henrique</h2>
-                    <p>Desenvolvedor Front-End apaixonado por criar experiências digitais incríveis. Com uma
-                        combinação de habilidades técnicas e criatividade, estou sempre em busca de novos desafios para
-                        transformar ideias em realidade.</p>
-                    <a href="#projetos" class="btn-primary">Ver Meus Projetos</a>
-                </div>
+    <section id="sobre">
+        <div class="container">
+            <div class="about-content">
+                <h2>Olá, Eu Sou Matheus Henrique</h2>
+                <p>Desenvolvedor Front-End apaixonado por criar experiências digitais incríveis. Com uma
+                    combinação de habilidades técnicas e criatividade, estou sempre em busca de novos desafios para
+                    transformar ideias em realidade.</p>
+                <p>Minha jornada no mundo da tecnologia começou cedo, e desde então, tenho me dedicado aprimorando
+                    minhas habilidades em desenvolvimento web, design de interfaces e cibersegurança. Acredito que a
+                    tecnologia tem o poder de transformar vidas, e estou comprometido em usar minhas habilidades para
+                    criar soluções inovadoras e impactantes.</p>
+                <p>Se você está procurando um desenvolvedor dedicado, criativo e apaixonado, estou aqui para ajudar a
+                    transformar suas ideias em realidade digital. Vamos trabalhar juntos para criar algo incrível!</p>
+
             </div>
-        </section>
+    </section>
 
-        <section id="projetos">
-            <div class="container">
-                <h2>Meus Projetos</h2>
+    <section id="projetos">
+        <div class="container">
+            <h2>Meus Projetos</h2>
 
-                <div class="tabs-container">
-                    <button class="tab-link active" onclick="openTab(event, 'web')">Projetos Web</button>
-                    <button class="tab-link" onclick="openTab(event, 'estudos')">Estudos e Outros Projetos</button>
-                    
-                </div>
+            <div class="tabs-container">
+                <button class="tab-link active" onclick="openTab(event, 'web')">Projetos Web</button>
+                <button class="tab-link" onclick="openTab(event, 'estudos')">Estudos e Outros Projetos</button>
 
-
-                <!-- PARTE DO DESENVOLVIMENTO WEB -->
-                <div id="web" class="tab-content active">
-                    <div class="projects-grid">
-
-                        <div class="project-card">
-                            <video autoplay loop muted playsinline src="midia/hacking-etico.mp4">
-                                Seu navegador não suporta o elemento do vídeo.
-                            </video>
-                            <h3>Site Hacking Ético</h3>
-                            <p>Projeto que destaca minhas habilidades de Cibersegurança e minhas habilidades em CSS.</p>
-                            <div class="project-links">
-                                <a href="https://hacking-etico.netlify.app/" target="_blank">Ver Demo</a>
-                                <a href="https://github.com/matuza450/sitehacking" target="_blank">Código no GitHub</a>
-                            </div>
-
-                            <div class="project-tech-list">
-                                <span><i class="devicon-html5-plain"></i> HTML5</span>
-                                <span><i class="devicon-css3-plain"></i> CSS3</span>
-                                <span><i class="devicon-javascript-plain"></i> JavaScript</span>
-                            </div>
-                        </div>
-
-                        <div class="project-card">
-                            <img src="/midia/sistema-login.png"
-                                alt="Sistema de Login em Java">
-                            <h3>Sistema de Login Em Java</h3>
-                            <p>Implementação de um sistema de autenticação seguro utilizando SQLite e DBeaver, com foco em segurança e eficiência.</p>
-
-            
-                            <div class="project-links">
-                                <a href="https://github.com/MATHEUSH-DEV/Project-xlogin-java" target="_blank">Código no GitHub</a>
-                            </div>
-                            <div class="project-tech-list">
-                                <span><i class="devicon-java-plain"></i> Java</span>
-                                <span><i class="devicon-java-plain"></i> JFrame</span>
-                                <span><i class="devicon-sqlite-plain"></i> SQLite</span>
-                                <span><i class="devicon-dbeaver-plain"></i> DBeaver</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="estudos" class="tab-content">
-                    <div class="projects-grid">
-
-                        <div class="project-card">
-                            <img src="https://placehold.co/600x400/1E1E1E/00FF6A?text=Estudos+em+Linguagem+C"
-                                alt="Projetos em C">
-                            <h3>Coleção de Estudos em Linguagem C</h3>
-                            <p>Um repositório com diversos projetos acadêmicos e "mini projetos" desenvolvidos para
-                                praticar a lógica e os fundamentos da programação em C.</p>
-                            <div class="project-links">
-                                <a href="https://github.com/MATHEUSH-DEV/projetos-em-c" target="_blank">Ver Coleção no
-                                    GitHub</a>
-                            </div>
-                            <div class="project-tech-list">
-                                <span><i class="devicon-c-plain"></i> C</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
 
+            <!-- PARTE DO DESENVOLVIMENTO WEB -->
+            <div id="web" class="tab-content active">
+                <div class="projects-grid">
 
-        </section>
-        <section id="formacao">
-            <div class="container">
-                <h2>Formação Acadêmica</h2>
-                <div class="education-grid">
-
-                    <div class="education-card">
-                        <div class="education-header">
-                            <h3>Engenharia de Software</h3>
-
-                            <p class="instituicao"><i class="fa-solid fa-graduation-cap"></i> Anhanguera Educacional</p>
-
-                        </div>
-                        <div class="education-details">
-                            <p><strong>Status:</strong> Cursando - 1° de 8 semestres</p>
-                            <p><strong>Provisão de Conclusão: </strong>Julho/2029</p>
-
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar-label">
-                                <span>Progresso do Curso</span>
-                                <span>10%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress" style="width: 10%;"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="education-card">
-                        <div class="education-header">
-                            <h3>Técnico em Desenvolvimento de Sistemas</h3>
-                            <p class="institucao"><i class="fa-solid fa-graduation-cap"></i> Instituto Federal de
-                                Brasília</p><br>
-                        </div>
-                        <div class="education-details">
-                            <p><strong>Status:</strong> Cursando - 2° de 4° semestres</p>
-                            <p><strong>Previsão de Conclusão:</strong> Dezembro/2026</p>
-
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar-label">
-                                <span>Progresso do Curso</span>
-                                <span>50%</span>
-
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress" style="width: 50%;"></div>
-
-                            </div>
-
+                    <div class="project-card">
+                        <video autoplay loop muted playsinline src="midia/hacking-etico.mp4">
+                            Seu navegador não suporta o elemento do vídeo.
+                        </video>
+                        <h3>Site Hacking Ético</h3>
+                        <p>Projeto que destaca minhas habilidades de Cibersegurança e minhas habilidades em CSS.</p>
+                        <div class="project-links">
+                            <a href="https://hacking-etico.netlify.app/" target="_blank">Ver Demo</a>
+                            <a href="https://github.com/matuza450/sitehacking" target="_blank">Código no GitHub</a>
                         </div>
 
-                    </div>
-                    <div class="education-grind">
-                        <div class="education-card">
-                            <div class="education-header">
-                                <h3>Certificado Profissinal Análise de dados do Google</h3>
-                                <p class="institucao"><i class="fa-solid fa-graduation-cap"> Google | Coursera</i></p>
-                                <br>
-                            </div>
-                            <div class="education-details">
-                                <p><strong>Status:</strong> Formado</p>
-                                <p><strong>Conclusão: </strong> Fevereiro/2026</p>
-                            </div>
-                            <div class="progress-container">
-                                <div class="progress-bar-label">
-                                    <span>Progresso do Curso</span>
-                                    <span>100%</span>
-                                </div>
-                                <div class="progress-bar">
-                                    <div class="progress" style="width: 100%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="habilidades">
-            <div class="container">
-                <h2>Habilidades</h2>
-
-                <div class="skills-tabs-container">
-                    <button class="skill-tab-link active" onclick="openSkillTab(event, 'desenvolvimento')">
-                        <i class="fa-solid fa-code"></i> Desenvolvedor
-                    </button>
-
-                </div>
-
-                <div id="desenvolvimento" class="skill-tab-content active">
-                    <div class="skills-category">
-                        <h4>Frontend</h4>
-                        <div class="skills-list">
+                        <div class="project-tech-list">
                             <span><i class="devicon-html5-plain"></i> HTML5</span>
                             <span><i class="devicon-css3-plain"></i> CSS3</span>
-                            <span><i class="devicon-rails-plain"></i> Ruby on Rails</span>
-                            <span><i class="devicon-flutter-plain"></i> Flutter</span>
+                            <span><i class="devicon-javascript-plain"></i> JavaScript</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <img src="/midia/sistema-login.png" alt="Sistema de Login em Java">
+                        <h3>Sistema de Login Em Java</h3>
+                        <p>Implementação de um sistema de autenticação seguro utilizando SQLite e DBeaver, com foco em
+                            segurança e eficiência.</p>
+
+
+                        <div class="project-links">
+                            <a href="https://github.com/MATHEUSH-DEV/Project-xlogin-java" target="_blank">Código no
+                                GitHub</a>
+                        </div>
+                        <div class="project-tech-list">
                             <span><i class="devicon-java-plain"></i> Java</span>
                             <span><i class="devicon-java-plain"></i> JFrame</span>
-                            <span><i class="devicon-javascript-plain"></i> JavaScript</span>
-                            <span><i class="devicon-sass-plain"></i> Sass</span>
-                            <span><i class="devicon-bootstrap-plain"></i> Bootstrap</span>
-                            <span><i class="devicon-tailwindcss-plain"></i> Tailwind CSS</span>
-                            <span><i class="devicon-docker-plain"></i> Docker</span>
-                            
-
-                            
+                            <span><i class="devicon-sqlite-plain"></i> SQLite</span>
+                            <span><i class="devicon-dbeaver-plain"></i> DBeaver</span>
                         </div>
                     </div>
-                    <div class="skills-category">
-                        <h4>Backend</h4>
-                        <div class="skills-list">
-                            <span><i class="devicon-rails-plain"></i> Ruby on Rails</span>
-                            <span><i class="devicon-nodejs-plain"></i> Node.js</span>
-                            <span><i class="devicon-react-original"></i> React</span>
-                            <span><i class="devicon-git-plain"></i> Git</span>
-                            <span><i class="devicon-javascript-plain"></i> JavaScript</span>
-                            <span><i class="devicon-python-plain"></i> Python</span>
-                            <span><i class="devicon-php-plain"></i> PHP</span>
-                            <span><i class="devicon-rust-plain"></i> Rust</span>
-                            <span><i class="devicon-go-plain"></i> Go</span>
-                            <span><i class="devicon-angularjs-plain"></i> Angular</span>
-
-                        </div>
-                    </div>
-
-            </div>
-        </section>
-
-        <section id="servicos">
-            <div class="container">
-                <h2>Serviços Disponíveis</h2>
-                <div class="services-grid">
-
-                    <a href="#contato" class="service-card-link">
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fa-solid fa-code"></i>
-                            </div>
-                            <h3>Desenvolvimento Web</h3>
-                            <p>Criação de sites e aplicações web responsivas, modernas e otimizadas para performance.
-                            </p>
-                        </div>
-                    </a>
-
-                    <a href="#contato" class="service-card-link">
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fa-solid fa-database"></i>
-                            </div>
-                            <h3>Desenvolvimento Backend</h3>
-                            <p>Desenvolvimento de APIs, sistemas de autenticação e integrações com bancos de dados para
-                                garantir a funcionalidade e segurança do seu projeto.</p>
-                        </div>
-                    </a>
-
-                    <a href="#contato" class="service-card-link">
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fa-solid fa-code"></i>
-                            </div>
-                            <h3>Desenvolvimento de Interface Gráfica em Java</h3>
-                            <p>Criação de aplicativos desktop utilizando Java Swing e JavaFX, garantindo uma
-                                experiência fluida e intuitiva para os usuários.</p>
-                        </div>
-                    </a>
-
-                    <a href="#contato" class="service-card-link">
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fa-solid fa-shield-halved"></i>
-                            </div>
-                            <h3>Consultoria em Cibersegurança</h3>
-                            <p>Análise de vulnerabilidades, implementação de medidas de segurança e treinamento para
-                                proteger seus sistemas contra ameaças cibernéticas.</p>
-                        </div>
-                    </a>
-
-                    <a href="#contato" class="service-card-link">
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fa-solid fa-chart-line"></i>
-                            </div>
-                            <h3>Análise de Dados</h3>
-                            <p>Coleta, limpeza e análise de dados para fornecer insights valiosos e apoiar a tomada de
-                                decisões estratégicas.</p>
-                        </div>
-
-                    </a>
-
-
-                    <a href="#contato" class="service-card-link">
-                        <div class="service-card">
-                            <div class="service-icon">
-                                <i class="fa-solid fa-screwdriver-wrench"></i>
-                            </div>
-                            <h3>Serviços Freelancer</h3>
-                            <p>Serviços de criação, otimização e atendimento de alta qualidade para transformar suas
-                                ideias em realidade digital.</p>
-                        </div>
-                    </a>
-
                 </div>
             </div>
-        </section>
 
-        <section id="contato">
-            <div class="container">
-                <div class="contact-box">
-                    <h2>Vamos Conversar?</h2>
-                    <p>
-                        Se você tem um projeto em mente, uma pergunta, ou simplesmente quer conectar, o meu inbox está
-                        sempre aberto. Adoraria ouvir a sua ideia e ver como podemos trabalhar juntos.
-                    </p>
-                    <div class="contact-links-container">
-                        <a href="mailto:mattuza@yahoo.com" class="contact-button">
-                            <i class="fa-solid fa-envelope"></i>
-                            <span>Enviar um Email</span>
+            <div id="estudos" class="tab-content">
+                <div class="projects-grid">
+
+                    <div class="project-card">
+                        <img src="https://placehold.co/600x400/1E1E1E/00FF6A?text=Estudos+em+Linguagem+C"
+                            alt="Projetos em C">
+                        <h3>Coleção de Estudos em Linguagem C</h3>
+                        <p>Um repositório com diversos projetos acadêmicos e "mini projetos" desenvolvidos para
+                            praticar a lógica e os fundamentos da programação em C.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/MATHEUSH-DEV/projetos-em-c" target="_blank">Ver Coleção no
+                                GitHub</a>
+                        </div>
+                        <div class="project-tech-list">
+                            <span><i class="devicon-c-plain"></i> C</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </section>
+    <section id="formacao">
+        <div class="container">
+            <h2>Formação Acadêmica</h2>
+            <div class="education-grid">
+
+                <div class="education-card">
+                    <div class="education-header">
+                        <h3>Engenharia de Software</h3>
+
+                        <p class="instituicao"><i class="fa-solid fa-graduation-cap"></i> Anhanguera Educacional</p>
+
+                    </div>
+                    <div class="education-details">
+                        <p><strong>Status:</strong> Cursando - 1° de 8 semestres</p>
+                        <p><strong>Provisão de Conclusão: </strong>Julho/2029</p>
+
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar-label">
+                            <span>Progresso do Curso</span>
+                            <span>10%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 10%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="education-card">
+                    <div class="education-header">
+                        <h3>Técnico em Desenvolvimento de Sistemas</h3>
+                        <p class="institucao"><i class="fa-solid fa-graduation-cap"></i> Instituto Federal de
+                            Brasília</p><br>
+                    </div>
+                    <div class="education-details">
+                        <p><strong>Status:</strong> Cursando - 2° de 4° semestres</p>
+                        <p><strong>Previsão de Conclusão:</strong> Dezembro/2026</p>
+
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar-label">
+                            <span>Progresso do Curso</span>
+                            <span>50%</span>
+
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 50%;"></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="education-grind">
+                    <div class="education-card">
+                        <div class="education-header">
+                            <h3>Certificado Profissinal Análise de dados do Google</h3>
+                            <p class="institucao"><i class="fa-solid fa-graduation-cap"> Google | Coursera</i></p>
+                            <br>
+                        </div>
+                        <div class="education-details">
+                            <p><strong>Status:</strong> Formado</p>
+                            <p><strong>Conclusão: </strong> Fevereiro/2026</p>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar-label">
+                                <span>Progresso do Curso</span>
+                                <span>100%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="habilidades">
+        <div class="container">
+            <h2>Habilidades</h2>
+
+            <div class="skills-tabs-container">
+                <button class="skill-tab-link active" onclick="openSkillTab(event, 'desenvolvimento')">
+                    <i class="fa-solid fa-code"></i> Desenvolvedor
+                </button>
+
+            </div>
+
+            <div id="desenvolvimento" class="skill-tab-content active">
+                <div class="skills-category">
+                    <h4>Frontend</h4>
+                    <div class="skills-list">
+                        <span><i class="devicon-html5-plain"></i> HTML5</span>
+                        <span><i class="devicon-css3-plain"></i> CSS3</span>
+                        <span><i class="devicon-rails-plain"></i> Ruby on Rails</span>
+                        <span><i class="devicon-flutter-plain"></i> Flutter</span>
+                        <span><i class="devicon-java-plain"></i> Java</span>
+                        <span><i class="devicon-java-plain"></i> JFrame</span>
+                        <span><i class="devicon-javascript-plain"></i> JavaScript</span>
+                        <span><i class="devicon-sass-plain"></i> Sass</span>
+                        <span><i class="devicon-bootstrap-plain"></i> Bootstrap</span>
+                        <span><i class="devicon-tailwindcss-plain"></i> Tailwind CSS</span>
+                        <span><i class="devicon-docker-plain"></i> Docker</span>
+
+
+
+                    </div>
+                </div>
+                <div class="skills-category">
+                    <h4>Backend</h4>
+                    <div class="skills-list">
+                        <span><i class="devicon-rails-plain"></i> Ruby on Rails</span>
+                        <span><i class="devicon-nodejs-plain"></i> Node.js</span>
+                        <span><i class="devicon-react-original"></i> React</span>
+                        <span><i class="devicon-git-plain"></i> Git</span>
+                        <span><i class="devicon-javascript-plain"></i> JavaScript</span>
+                        <span><i class="devicon-python-plain"></i> Python</span>
+                        <span><i class="devicon-php-plain"></i> PHP</span>
+                        <span><i class="devicon-rust-plain"></i> Rust</span>
+                        <span><i class="devicon-go-plain"></i> Go</span>
+                        <span><i class="devicon-angularjs-plain"></i> Angular</span>
+
+                    </div>
+                </div>
+
+            </div>
+    </section>
+
+    <section id="servicos">
+        <div class="container">
+            <h2>Serviços Disponíveis</h2>
+            <div class="services-grid">
+
+                <a href="#contato" class="service-card-link">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h3>Desenvolvimento Web</h3>
+                        <p>Criação de sites e aplicações web responsivas, modernas e otimizadas para performance.
+                        </p>
+                    </div>
+                </a>
+
+                <a href="#contato" class="service-card-link">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fa-solid fa-database"></i>
+                        </div>
+                        <h3>Desenvolvimento Backend</h3>
+                        <p>Desenvolvimento de APIs, sistemas de autenticação e integrações com bancos de dados para
+                            garantir a funcionalidade e segurança do seu projeto.</p>
+                    </div>
+                </a>
+
+                <a href="#contato" class="service-card-link">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h3>Desenvolvimento de Interface Gráfica em Java</h3>
+                        <p>Criação de aplicativos desktop utilizando Java Swing e JavaFX, garantindo uma
+                            experiência fluida e intuitiva para os usuários.</p>
+                    </div>
+                </a>
+
+                <a href="#contato" class="service-card-link">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h3>Consultoria em Cibersegurança</h3>
+                        <p>Análise de vulnerabilidades, implementação de medidas de segurança e treinamento para
+                            proteger seus sistemas contra ameaças cibernéticas.</p>
+                    </div>
+                </a>
+
+                <a href="#contato" class="service-card-link">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <h3>Análise de Dados</h3>
+                        <p>Coleta, limpeza e análise de dados para fornecer insights valiosos e apoiar a tomada de
+                            decisões estratégicas.</p>
+                    </div>
+
+                </a>
+
+
+                <a href="#contato" class="service-card-link">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fa-solid fa-screwdriver-wrench"></i>
+                        </div>
+                        <h3>Serviços Freelancer</h3>
+                        <p>Serviços de criação, otimização e atendimento de alta qualidade para transformar suas
+                            ideias em realidade digital.</p>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contato">
+        <div class="container">
+            <div class="contact-box">
+                <h2>Vamos Conversar?</h2>
+                <p>
+                    Se você tem um projeto em mente, uma pergunta, ou simplesmente quer conectar, o meu inbox está
+                    sempre aberto. Adoraria ouvir a sua ideia e ver como podemos trabalhar juntos.
+                </p>
+                <div class="contact-links-container">
+                    <a href="mailto:mattuza@yahoo.com" class="contact-button">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>Enviar um Email</span>
+                    </a>
+                    <a href="https://linkedin.com/in/matheus-henrique-3261a6361/" target="_blank"
+                        class="contact-button">
+                        <i class="fa-brands fa-linkedin"></i>
+                        <span>Conectar no LinkedIn</span>
+                        <a href="https://github.com/MATHEUSH-DEV" target="_blank" class="contact-button">
+                            <i class="fa-brands fa-github"></i>
+                            <span>Ver no GitHub</span>
                         </a>
-                        <a href="https://linkedin.com/in/matheus-henrique-3261a6361/" target="_blank"
-                            class="contact-button">
-                            <i class="fa-brands fa-linkedin"></i>
-                            <span>Conectar no LinkedIn</span>
-                            <a href="https://github.com/MATHEUSH-DEV" target="_blank" class="contact-button">
-                                <i class="fa-brands fa-github"></i>
-                                <span>Ver no GitHub</span>
-                            </a>
-                    </div>
-                    </a>
                 </div>
+                </a>
             </div>
-            </div>
-        </section>
+        </div>
+        </div>
+    </section>
     </main>
 
 
