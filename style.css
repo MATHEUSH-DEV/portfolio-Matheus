@@ -1243,10 +1243,6 @@ section h2 {
     gap: 1.25rem;
 }
 
-.education-grind {
-    display: contents;
-}
-
 .education-card {
     min-height: 100%;
     border-left: 1px solid rgba(255, 255, 255, 0.07);
