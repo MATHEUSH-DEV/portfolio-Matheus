@@ -60,9 +60,13 @@ document.addEventListener("DOMContentLoaded", function() {
         if (mobileNav.classList.contains('active')) {
             icon.classList.remove('fa-bars');
             icon.classList.add('fa-xmark');
+            menuBtn.setAttribute('aria-expanded', 'true');
+            menuBtn.setAttribute('aria-label', 'Fechar menu');
         } else {
             icon.classList.remove('fa-xmark');
             icon.classList.add('fa-bars');
+            menuBtn.setAttribute('aria-expanded', 'false');
+            menuBtn.setAttribute('aria-label', 'Abrir menu');
         }
     });
 
@@ -74,6 +78,8 @@ document.addEventListener("DOMContentLoaded", function() {
             const icon = menuBtn.querySelector('i');
             icon.classList.remove('fa-xmark');
             icon.classList.add('fa-bars');
+            menuBtn.setAttribute('aria-expanded', 'false');
+            menuBtn.setAttribute('aria-label', 'Abrir menu');
         });
     });
 });
